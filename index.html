@@ -3778,6 +3778,22 @@ wireDeepDive();
 
   // Render once Plotly is ready
   waitForPlotlyAndRender(0);
+  // טעינה אוטומטית של CSV מהשרת
+  autoLoadCSV();
+}
+
+async function autoLoadCSV(){
+  try{
+    const resp = await fetch('./rain for dashboard.csv');
+    if(!resp.ok) return;
+    const text = await resp.text();
+    const rows = parseCSV(text);
+    DATA = computeDataFromRows(rows);
+    renderAll();
+    updateFooter();
+    const st = document.getElementById("loadStatus");
+    if(st) st.textContent = "נתונים עודכנו אוטומטית מקובץ CSV";
+  }catch(e){ /* שימוש בנתונים המוטמעים */ }
 }
 
 // Ensure init runs after DOM is ready
