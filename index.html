@@ -3784,7 +3784,7 @@ wireDeepDive();
 
 async function autoLoadCSV(){
   try{
-    const resp = await fetch('./rain for dashboard.csv');
+    const resp = await fetch('./rain for dashboard.csv?v=' + Date.now());
     if(!resp.ok) return;
     const text = await resp.text();
     const rows = parseCSV(text);
