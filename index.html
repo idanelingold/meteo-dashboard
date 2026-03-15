@@ -390,6 +390,8 @@ select{min-width:220px;padding:6px 8px;border-radius:10px;border:1px solid var(-
   .cards{grid-template-columns:repeat(3,minmax(0,1fr));}
   .charts-row{grid-template-columns:1fr;}
   .tables-row{grid-template-columns:1fr;}
+  .header{grid-template-columns:1fr;gap:10px;}
+  .header>div:last-child{justify-content:flex-start;flex-wrap:wrap;}
 }
 .heat-title{display:flex;justify-content:space-between;align-items:center;gap:10px;}
 .heat-title h2{margin:0;font-size:15px;}
@@ -508,6 +510,25 @@ table.heat tr.active-row td.season{
 @media (max-width: 720px){
   #zsFooter{flex-direction:column; align-items:flex-start;}
   #zsFooter .zsRight{text-align:right;}
+}
+@media (max-width:768px){
+  .tables-row .panel{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  button{min-height:44px;padding-top:8px;padding-bottom:8px;}
+  select{min-width:unset;width:100%;}
+  .controls{gap:6px;}
+  #zsFooter .zsLeft{min-width:unset;}
+}
+@media (max-width:480px){
+  .wrap{padding:8px 8px 12px;}
+  .header{padding:10px 12px;gap:8px;border-radius:14px;}
+  h1{font-size:18px;}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px;}
+  .card{padding:10px 8px;border-radius:12px;}
+  .card .v{font-size:18px;}
+  .card.current-season .v{font-size:19px;}
+  .card .k{font-size:10.5px;}
+  .panel{padding:12px 10px;border-radius:14px;margin-bottom:10px;}
+  .charts-row,.tables-row{gap:8px;}
 }
 
 /* Enhanced tooltip styling */
