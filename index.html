@@ -3621,16 +3621,14 @@ function openDeepDive(seasonKey){
   // update errors when switching seasons.  If the chart already exists, newPlot will
   // replace it entirely.  Wrap in try/catch to ensure that subsequent UI updates still
   // execute even if Plotly throws.
-  try {
-    const plotEl = document.getElementById("deepDiveMonthlyPlot");
-    const plotW = plotEl && plotEl.clientWidth > 0 ? plotEl.clientWidth : undefined;
-    if(plotW) layout.width = plotW;
-    Plotly.newPlot("deepDiveMonthlyPlot", traces, layout, { displayModeBar: false, responsive: true });
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{ try{ Plotly.Plots.resize("deepDiveMonthlyPlot"); }catch(e){} }));
-  } catch(e) {
-    // Log the error to the console (if available) but do not break the rest of the UI updates.
-    console.error(e);
-  }
+  requestAnimationFrame(()=>{
+    try {
+      Plotly.newPlot("deepDiveMonthlyPlot", traces, layout, { displayModeBar: false, responsive: true });
+    } catch(e) {
+      // Log the error to the console (if available) but do not break the rest of the UI updates.
+      console.error(e);
+    }
+  });
   // Bind change events on deep dive unit radio buttons to re-render the monthly plot without closing the modal.
   document.querySelectorAll('input[name="deepDiveUnit"]').forEach(radio => {
     radio.onchange = () => {
