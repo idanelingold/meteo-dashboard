@@ -3622,8 +3622,11 @@ function openDeepDive(seasonKey){
   // replace it entirely.  Wrap in try/catch to ensure that subsequent UI updates still
   // execute even if Plotly throws.
   try {
+    const plotEl = document.getElementById("deepDiveMonthlyPlot");
+    const plotW = plotEl && plotEl.clientWidth > 0 ? plotEl.clientWidth : undefined;
+    if(plotW) layout.width = plotW;
     Plotly.newPlot("deepDiveMonthlyPlot", traces, layout, { displayModeBar: false, responsive: true });
-    setTimeout(()=>{ try{ Plotly.Plots.resize("deepDiveMonthlyPlot"); }catch(e){} }, 50);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ try{ Plotly.Plots.resize("deepDiveMonthlyPlot"); }catch(e){} }));
   } catch(e) {
     // Log the error to the console (if available) but do not break the rest of the UI updates.
     console.error(e);
