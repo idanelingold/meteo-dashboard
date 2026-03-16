@@ -531,6 +531,27 @@ table.heat tr.active-row td.season{
   .charts-row,.tables-row{gap:8px;}
 }
 
+/* ── מובייל: מודל סיכום עומק ── */
+@media (max-width: 600px) {
+  #deepDiveCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  #deepDivePanelsRow {
+    grid-template-columns: 1fr !important;
+  }
+  #deepDiveMonthlyPlot {
+    height: 220px !important;
+  }
+  #deepDiveCalendar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  #deepDiveModal > div > div[style*="sticky"] {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+}
+
 /* Enhanced tooltip styling */
 .heat td.cell {
   position: relative;
@@ -3866,7 +3887,7 @@ if(document.readyState === "loading"){
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:12px;">
+    <div id="deepDivePanelsRow" style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:12px;">
       <div class="panel" style="padding:12px;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
           <div style="font-weight:900;">התפלגות חודשית</div>
