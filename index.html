@@ -546,9 +546,16 @@ table.heat tr.active-row td.season{
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+  /* Header — סידור מחדש במובייל */
   #deepDiveModal > div > div[style*="sticky"] {
     flex-wrap: wrap !important;
-    gap: 8px !important;
+    gap: 6px !important;
+    justify-content: flex-end !important;
+  }
+  /* כותרת תופסת שורה מלאה */
+  #deepDiveModal > div > div[style*="sticky"] > div:first-child {
+    flex: 1 1 100% !important;
+    order: -1 !important;
   }
 }
 
@@ -3616,6 +3623,7 @@ function openDeepDive(seasonKey){
   // execute even if Plotly throws.
   try {
     Plotly.newPlot("deepDiveMonthlyPlot", traces, layout, { displayModeBar: false, responsive: true });
+    setTimeout(()=>{ try{ Plotly.Plots.resize("deepDiveMonthlyPlot"); }catch(e){} }, 50);
   } catch(e) {
     // Log the error to the console (if available) but do not break the rest of the UI updates.
     console.error(e);
