@@ -3600,6 +3600,7 @@ function openDeepDive(seasonKey){
     hovertemplate: (deepDiveUnitSel === "percent") ? "%{x}<br>ממוצע: %{y:.0f}%<extra></extra>" : "%{x}<br>ממוצע: %{y:.1f} מ״מ<extra></extra>" });
   const theme = getPlotlyTheme();
   const layout = {
+    autosize: true,
     margin: { l: 42, r: 10, t: 6, b: 30 },
     yaxis: { title: yLabel, ...theme.yaxis },
     xaxis: theme.xaxis,
